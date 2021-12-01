@@ -1,12 +1,16 @@
 'use strict'
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
+var cors = require('cors')
+app.use(cors())
+app.options('*', cors());
 
 var auto_route = require('./routes/autoRoute');
 var marca_route = require('./routes/marcaRoute');
 
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -32,7 +36,7 @@ mongoose.connect(`mongodb://localhost:27017/grupo18?security=false`, options)
 .then(() => console.log('> Successfully connected to DB'))
   .catch(err => console.log(err))  
 
-    app.listen(4000, () => {
+    app.listen(5000, () => {
 
-        console.log("Esta corriendo en puerto 4000")
+        console.log("Esta corriendo en puerto 5000")
     })
